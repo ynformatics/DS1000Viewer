@@ -1,0 +1,173 @@
+﻿<Page
+    x:Class="DS1000Viewer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DS1000Viewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="grid">
+        <Grid.ContextFlyout>
+            <MenuFlyout>
+                <MenuFlyoutItem Text="Save Image to File" Tag="save" Click="Scope_SaveImage" />
+                <MenuFlyoutItem Text="Copy Image to Clipboard" Tag="copy" Click="Scope_CopyImage" />
+                <MenuFlyoutSeparator></MenuFlyoutSeparator>
+                <MenuFlyoutItem Text="Settings" Tag="settings" Click="Settings_Click" />
+            </MenuFlyout>
+        </Grid.ContextFlyout>
+        <Image  x:Name="image"  ></Image>
+        <canvas:CanvasControl x:Name="canvas" ClearColor="CornflowerBlue"/>
+        <Grid  x:Name="y" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"></ColumnDefinition>
+                <ColumnDefinition Width="75*"></ColumnDefinition>
+                <ColumnDefinition Width="32*"></ColumnDefinition>
+                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="32*"></ColumnDefinition>
+                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="32*"></ColumnDefinition>
+                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="320*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Tag="1" Click="Channel_Click" Opacity="0" >CH1</Button>
+            <DropDownButton Grid.Column="1" x:Name="scale1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0" Content="Scale1" Background="AliceBlue">
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Top">
+                        <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="20mV" Tag="0.02" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="50mV" Tag="0.05" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="100mV" Tag="0.1" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="200mV" Tag="0.2" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="500mV" Tag="0.5" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="1V" Tag="1" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="2V" Tag="2" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="5V" Tag="5" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="10V" Tag="10" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="20V" Tag="20" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="50V" Tag="50" Click="Chan1Scale_Click"/>
+                        <MenuFlyoutItem Text="100V" Tag="100" Click="Chan1Scale_Click"/>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <Button Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Tag="2" Click="Channel_Click" Opacity="0" >CH2</Button>
+            <DropDownButton Grid.Column="3" x:Name="scale2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Opacity="0" Content="Scale2" Background="AliceBlue">
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Top">
+                        <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="20mV" Tag="0.02" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="50mV" Tag="0.05" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="100mV" Tag="0.1" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="200mV" Tag="0.2" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="500mV" Tag="0.5" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="1V" Tag="1" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="2V" Tag="2" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="5V" Tag="5" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="10V" Tag="10" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="20V" Tag="20" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="50V" Tag="50" Click="Chan2Scale_Click"/>
+                        <MenuFlyoutItem Text="100V" Tag="100" Click="Chan2Scale_Click"/>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <Button Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="3" Click="Channel_Click" Opacity="0" >CH3</Button>
+            <DropDownButton Grid.Column="5" x:Name="scale3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Opacity="0" Content="Scale3" Background="AliceBlue">
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Top">
+                        <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="20mV" Tag="0.02" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="50mV" Tag="0.05" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="100mV" Tag="0.1" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="200mV" Tag="0.2" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="500mV" Tag="0.5" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="1V" Tag="1" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="2V" Tag="2" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="5V" Tag="5" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="10V" Tag="10" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="20V" Tag="20" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="50V" Tag="50" Click="Chan3Scale_Click"/>
+                        <MenuFlyoutItem Text="100V" Tag="100" Click="Chan3Scale_Click"/>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <Button Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="4" Click="Channel_Click" Opacity="0" >CH4</Button>
+            <DropDownButton Grid.Column="7" x:Name="scale4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Opacity="0" Content="Scale4" Background="AliceBlue">
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Top">
+                        <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="20mV" Tag="0.02" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="50mV" Tag="0.05" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="100mV" Tag="0.1" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="200mV" Tag="0.2" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="500mV" Tag="0.5" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="1V" Tag="1" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="2V" Tag="2" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="5V" Tag="5" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="10V" Tag="10" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="20V" Tag="20" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="50V" Tag="50" Click="Chan4Scale_Click"/>
+                        <MenuFlyoutItem Text="100V" Tag="100" Click="Chan4Scale_Click"/>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+        </Grid>
+        <Grid x:Name="x">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="33*"></ColumnDefinition>
+                <ColumnDefinition Width="22*"></ColumnDefinition>
+                <ColumnDefinition Width="13*"></ColumnDefinition>
+                <ColumnDefinition Width="65*"></ColumnDefinition>
+                <ColumnDefinition Width="70*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <DropDownButton x:Name="timebase" Grid.Column="1" Content="Timebase" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0" Background="AliceBlue">
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Bottom">
+                        <MenuFlyoutSubItem Text="ns">
+                            <MenuFlyoutItem Text="5ns"   Tag="0.000000005" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="10ns"  Tag="0.00000001" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="20ns"  Tag="0.00000002" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="50ns"  Tag="0.00000005" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="100ns" Tag="0.0000001" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="200ns" Tag="0.0000002" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="500ns" Tag="0.0000005" Click="Timebase_Click"/>
+                        </MenuFlyoutSubItem>
+                        <MenuFlyoutSubItem Text="us">
+                            <MenuFlyoutItem Text="1us"   Tag="0.000001" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="2us"   Tag="0.000002" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="5us"   Tag="0.000005" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="10us"  Tag="0.00001" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="20us"  Tag="0.00002" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="50us"  Tag="0.00005" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="100us" Tag="0.0001" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="200us" Tag="0.0002" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="500us" Tag="0.0005" Click="Timebase_Click"/>
+                        </MenuFlyoutSubItem>
+                        <MenuFlyoutSubItem Text="ms">
+                            <MenuFlyoutItem Text="1ms"   Tag="0.001" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="2ms"   Tag="0.002" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="5ms"   Tag="0.005" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="10ms"  Tag="0.01" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="20ms"  Tag="0.02" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="50ms"  Tag="0.05" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="100ms" Tag="0.1" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="200ms" Tag="0.2" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="500ms" Tag="0.5" Click="Timebase_Click"/>
+                        </MenuFlyoutSubItem>
+                        <MenuFlyoutSubItem Text="s">
+                            <MenuFlyoutItem Text="1s"   Tag="1" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="2s"   Tag="1" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="5s"   Tag="5" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="10s"  Tag="10" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="20s"  Tag="20" Click="Timebase_Click"/>
+                            <MenuFlyoutItem Text="50s"  Tag="50" Click="Timebase_Click"/>
+                        </MenuFlyoutSubItem>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <Canvas x:Name="offset" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0" Background="Blue"></Canvas>
+        </Grid>
+    </Grid>
+</Page>
