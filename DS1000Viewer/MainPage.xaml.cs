@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics.Imaging;
@@ -11,6 +12,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -57,7 +59,9 @@ namespace DS1000Viewer
 
         DragManager drag;
 
-        int currentSourcedChannel = 0;
+        int currentSourcedChannel = 0;      
+
+        bool turboMode = true;
 
         public MainPage()
         {
@@ -77,6 +81,9 @@ namespace DS1000Viewer
             initTimer.Tick += InitTimer_Tick;
             initTimer.Start();
         }
+
+       
+
         private async void InitTimer_Tick(object sender, object e)
         {
             initTimer.Stop();
@@ -85,6 +92,11 @@ namespace DS1000Viewer
             {
                 System.Diagnostics.Debug.WriteLine("DS1000Viewer Starting");
                 var localSettings = ApplicationData.Current.LocalSettings;
+                if (localSettings.Values["turboMode"] == null)
+                    localSettings.Values["turboMode"] = true;
+                turboMode = (bool)localSettings.Values["turboMode"];
+                SetupTurbo();
+
                 object ipAddress = localSettings.Values["ipAddress"];
                 int port = 5555;
 
@@ -121,9 +133,12 @@ namespace DS1000Viewer
                 initTimer.Start();
             }
         }
-        private void Timer_Tick(object sender, object e)
+        private async void Timer_Tick(object sender, object e)
         {
-            canvas.Invalidate();
+            if (turboMode)
+                canvas.Invalidate();
+            else
+                await updateImage();
         }
         private void Offset_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
@@ -183,17 +198,18 @@ namespace DS1000Viewer
         }
 
         private void Canvas_PointerMoved(object sender, PointerRoutedEventArgs e)
-        {
+        {      
             drag.Update(e, () =>
             {
                 channels[drag.Channel].offset = (float)drag.Dy / (float)canvas.ActualHeight;
 
                 canvas.Invalidate();
-            });
+            });        
         }
 
+      
         private void Canvas_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
+        {         
             drag.Stop(e, () =>
             {
                 channels[drag.Channel].yorig -= (float)drag.Dy / (float)canvas.ActualHeight * 8f * channels[drag.Channel].yscale;
@@ -202,8 +218,9 @@ namespace DS1000Viewer
                 _ds.Send($":{channels[drag.Channel].name}:OFFS {channels[drag.Channel].yorig}");
 
                 canvas.Invalidate();
-            });
+            });          
         }
+
         private void Image_LayoutUpdated(object sender, object e)
         {
             if (image.ActualWidth > 1 && image.ActualHeight > 1)
@@ -231,7 +248,7 @@ namespace DS1000Viewer
             }
         }
         void CanvasControl_Draw(CanvasControl sender, CanvasDrawEventArgs args)
-        { 
+        {
             try
             {
                 if (!drag.IsDragging)
@@ -399,6 +416,31 @@ namespace DS1000Viewer
             dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromStream(imras));
 
             Clipboard.SetContent(dataPackage);
+        }
+
+        private  void Scope_Turbo(object sender, object e)
+        {
+            turboMode = turbo.Text == "Turbo Mode On";
+         
+            SetupTurbo();
+        }
+
+        private void SetupTurbo()
+        {
+            if (turboMode)
+            {
+                turbo.Text = "Turbo Mode Off";
+                timer.Interval = TimeSpan.FromMilliseconds(100);
+                canvas.Visibility = Visibility.Visible;
+                ApplicationData.Current.LocalSettings.Values["turboMode"] = true;
+            }
+            else
+            {
+                turbo.Text = "Turbo Mode On";
+                timer.Interval = TimeSpan.FromMilliseconds(1000);
+                canvas.Visibility = Visibility.Collapsed;
+                ApplicationData.Current.LocalSettings.Values["turboMode"] = false;
+            }
         }
     }
 }

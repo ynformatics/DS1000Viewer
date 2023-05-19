@@ -14,6 +14,7 @@
             <MenuFlyout>
                 <MenuFlyoutItem Text="Save Image to File" Tag="save" Click="Scope_SaveImage" />
                 <MenuFlyoutItem Text="Copy Image to Clipboard" Tag="copy" Click="Scope_CopyImage" />
+                <MenuFlyoutItem Text="Turbo Mode Off" Tag="turbo" Click="Scope_Turbo" x:Name="turbo" />
                 <MenuFlyoutSeparator></MenuFlyoutSeparator>
                 <MenuFlyoutItem Text="Settings" Tag="settings" Click="Settings_Click" />
             </MenuFlyout>

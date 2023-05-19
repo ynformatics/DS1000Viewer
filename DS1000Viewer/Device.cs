@@ -48,7 +48,7 @@ namespace DS1000Viewer
                 connected = true;
                 return true;
             }
-            catch(Exception ex)
+            catch
             {                
                 connected = false;
                 return false;
@@ -69,8 +69,8 @@ namespace DS1000Viewer
                 var bytes = SendRaw(command, header);
                 ret = System.Text.Encoding.ASCII.GetString(bytes);
 
-                if(command.IndexOf('?') >= 0)
-                    System.Diagnostics.Debug.WriteLine($"ret {ret}");
+               // if(command.IndexOf('?') >= 0)
+                //    System.Diagnostics.Debug.WriteLine($"ret {ret}");
                 return ret;
             }
             catch
@@ -95,7 +95,7 @@ namespace DS1000Viewer
 
             if (!hasResponse)
             {
-                System.Diagnostics.Debug.WriteLine($"{DateTimeOffset.Now.ToUnixTimeMilliseconds() - t0,4} {command}");
+                //System.Diagnostics.Debug.WriteLine($"{DateTimeOffset.Now.ToUnixTimeMilliseconds() - t0,4} {command}");
                 return new byte[0];
             }
 
@@ -150,7 +150,7 @@ namespace DS1000Viewer
             }
             while (!done);
 
-            System.Diagnostics.Debug.WriteLine($"{DateTimeOffset.Now.ToUnixTimeMilliseconds() - t0,4} {command}");
+            //System.Diagnostics.Debug.WriteLine($"{DateTimeOffset.Now.ToUnixTimeMilliseconds() - t0,4} {command}");
             return response.Take(response.Count - 1).ToArray();
         }
 
