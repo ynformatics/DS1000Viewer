@@ -9,7 +9,7 @@
   <Identity
     Name="YnformaticsLtd.DS1000Viewer"
     Publisher="CN=B38F3AC7-1D08-4F80-97FE-6E7460F182D6"
-    Version="1.0.13.0" />
+    Version="1.0.17.0" />
 
   <mp:PhoneIdentity PhoneProductId="9a797efe-9e0f-4a93-b614-ef2858b5b498" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

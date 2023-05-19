@@ -93,7 +93,7 @@ namespace DS1000Viewer
                 System.Diagnostics.Debug.WriteLine("DS1000Viewer Starting");
                 var localSettings = ApplicationData.Current.LocalSettings;
                 if (localSettings.Values["turboMode"] == null)
-                    localSettings.Values["turboMode"] = true;
+                    localSettings.Values["turboMode"] = false;
                 turboMode = (bool)localSettings.Values["turboMode"];
                 SetupTurbo();
 
