@@ -351,12 +351,16 @@ namespace DS1000Viewer
         }
         private async void Channel_Click(object sender, RoutedEventArgs e)
         {
+            timer.Stop();
             string channel = (sender as Button).Tag as string;
             int chan = int.Parse(channel) - 1;
             string on = channels[chan].on ? "0" : "1";
 
+            System.Diagnostics.Debug.WriteLine($":{channels[chan].name}:DISP {on}");
             _ds.Send($":{channels[chan].name}:DISP {on}");
+            channels[chan].on = !channels[chan].on;
             await updateImage();
+            timer.Start();
         }
       
         private async void Scope_SaveImage(object sender, object e)

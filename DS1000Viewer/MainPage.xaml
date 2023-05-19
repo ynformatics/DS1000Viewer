@@ -34,8 +34,8 @@
                 <ColumnDefinition Width="320*"></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Tag="1" Click="Channel_Click" Opacity="0" >CH1</Button>
-            <DropDownButton Grid.Column="1" x:Name="scale1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0" Content="Scale1" Background="AliceBlue">
+            <Button Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Tag="1" Click="Channel_Click" Background="Transparent">   </Button>
+            <DropDownButton Grid.Column="1" x:Name="scale1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Content="Scale1" Background="Transparent" Foreground="Transparent" ToolTipService.ToolTip="Chan 1 Scale">
                 <DropDownButton.Flyout>
                     <MenuFlyout Placement="Top">
                         <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan1Scale_Click"/>
@@ -54,8 +54,8 @@
                     </MenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>
-            <Button Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Tag="2" Click="Channel_Click" Opacity="0" >CH2</Button>
-            <DropDownButton Grid.Column="3" x:Name="scale2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Opacity="0" Content="Scale2" Background="AliceBlue">
+            <Button Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Tag="2" Click="Channel_Click" Background="Transparent">   </Button>
+            <DropDownButton Grid.Column="3" x:Name="scale2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Scale2" Background="Transparent" Foreground="Transparent" ToolTipService.ToolTip="Chan 2 Scale">
                 <DropDownButton.Flyout>
                     <MenuFlyout Placement="Top">
                         <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan2Scale_Click"/>
@@ -74,8 +74,8 @@
                     </MenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>
-            <Button Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="3" Click="Channel_Click" Opacity="0" >CH3</Button>
-            <DropDownButton Grid.Column="5" x:Name="scale3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Opacity="0" Content="Scale3" Background="AliceBlue">
+            <Button Grid.Column="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="3" Click="Channel_Click" Background="Transparent">   </Button>
+            <DropDownButton Grid.Column="5" x:Name="scale3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Content="Scale3" Background="Transparent" Foreground="Transparent" ToolTipService.ToolTip="Chan 3 Scale">
                 <DropDownButton.Flyout>
                     <MenuFlyout Placement="Top">
                         <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan3Scale_Click"/>
@@ -94,8 +94,8 @@
                     </MenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>
-            <Button Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="4" Click="Channel_Click" Opacity="0" >CH4</Button>
-            <DropDownButton Grid.Column="7" x:Name="scale4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Opacity="0" Content="Scale4" Background="AliceBlue">
+            <Button Grid.Column="6" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Tag="4" Click="Channel_Click" Background="Transparent"></Button>
+            <DropDownButton Grid.Column="7" x:Name="scale4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Scale4" Background="Transparent" Foreground="Transparent" ToolTipService.ToolTip="Chan 4 Scale">
                 <DropDownButton.Flyout>
                     <MenuFlyout Placement="Top">
                         <MenuFlyoutItem Text="10mV" Tag="0.01" Click="Chan4Scale_Click"/>
@@ -123,7 +123,7 @@
                 <ColumnDefinition Width="65*"></ColumnDefinition>
                 <ColumnDefinition Width="70*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DropDownButton x:Name="timebase" Grid.Column="1" Content="Timebase" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Opacity="0" Background="AliceBlue">
+            <DropDownButton x:Name="timebase" Grid.Column="1" Content="Timebase" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" Foreground="Transparent" ToolTipService.ToolTip="Timebase">
                 <DropDownButton.Flyout>
                     <MenuFlyout Placement="Bottom">
                         <MenuFlyoutSubItem Text="ns">
