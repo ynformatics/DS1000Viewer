@@ -133,6 +133,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="DragManager.cs" />
     <Compile Include="DS1054.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

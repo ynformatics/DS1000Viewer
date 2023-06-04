@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DS1000Viewer
 {
@@ -33,14 +30,16 @@ namespace DS1000Viewer
         {
             try
             {
+                Logger.Log($"connecting to {address}:{port}");
                 this.IPAddress = address;
                 this.Port = port;
                 if (tcpClient != null && tcpClient.Connected)
                     tcpClient.Close();
 
-                tcpClient = new TcpClient() { SendTimeout = 200, ReceiveTimeout = 200 };
-                if (!tcpClient.ConnectAsync(address, port).Wait(500))
+                tcpClient = new TcpClient();// { SendTimeout = 200, ReceiveTimeout = 200 };
+                if (!tcpClient.ConnectAsync(address, port).Wait(2000))
                 {
+                    Logger.Log("connect timeout");
                     connected = false;
                     return false;
                 }
@@ -48,8 +47,9 @@ namespace DS1000Viewer
                 connected = true;
                 return true;
             }
-            catch
+            catch (Exception ex)
             {                
+                Logger.Log(ex.ToString());
                 connected = false;
                 return false;
             }
@@ -73,9 +73,10 @@ namespace DS1000Viewer
                 //    System.Diagnostics.Debug.WriteLine($"ret {ret}");
                 return ret;
             }
-            catch
+            catch(Exception ex)
             { 
-                System.Diagnostics.Debug.WriteLine("exception");                              
+                System.Diagnostics.Debug.WriteLine("exception");
+                Logger.Log(ex.ToString());
             }
             return string.Empty;
         }

@@ -3,18 +3,11 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 
 namespace DS1000Viewer
 {
-    public enum SignInResult
-    {
-        SignInOK,
-        SignInFail,
-        SignInCancel,
-        Nothing
-    }
-
     public sealed partial class SettingsDialog : ContentDialog
     {
         public ContentDialogResult Result { get; private set; }
@@ -43,7 +36,9 @@ namespace DS1000Viewer
         {
             this.Result = ContentDialogResult.None;
 
-            // If the user name is saved, get it and populate the user name field.
+            PackageVersion pkgVersion = Package.Current.Id.Version;
+            version.Text = $"DS1000 v{pkgVersion.Major}.{pkgVersion.Minor}.{pkgVersion.Build}";
+
             Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             if (localSettings.Values.ContainsKey("ipAddress"))
             {
@@ -54,7 +49,6 @@ namespace DS1000Viewer
 
         void SettingsDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
         {
-            // If sign in was successful, save or clear the user name based on the user choice.
             if (this.Result == ContentDialogResult.Primary)
             {
                 Windows.Storage.ApplicationData.Current.LocalSettings.Values["ipAddress"] = ipAddress.Text;           

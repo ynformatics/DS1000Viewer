@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics.Imaging;
@@ -12,7 +11,6 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI;
-using Windows.UI.Core;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -90,11 +88,11 @@ namespace DS1000Viewer
 
             try
             {
-                System.Diagnostics.Debug.WriteLine("DS1000Viewer Starting");
                 var localSettings = ApplicationData.Current.LocalSettings;
                 if (localSettings.Values["turboMode"] == null)
                     localSettings.Values["turboMode"] = false;
                 turboMode = (bool)localSettings.Values["turboMode"];
+                Logger.Log($"DS1000Viewer Starting turbo={turboMode}");
                 SetupTurbo();
 
                 object ipAddress = localSettings.Values["ipAddress"];
@@ -128,8 +126,9 @@ namespace DS1000Viewer
                 timer.Tick += Timer_Tick;
                 timer.Start();
             }
-            catch
+            catch (Exception ex)
             {
+                Logger.Log(ex.ToString());
                 initTimer.Start();
             }
         }

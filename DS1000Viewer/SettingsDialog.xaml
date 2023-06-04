@@ -12,6 +12,7 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     CloseButtonClick="ContentDialog_CloseButtonClick">
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBlock x:Name="version" Text="Version" Margin="0,0,0,10"/>
         <TextBox Name="ipAddress" Header="IP Address"/>
         <HyperlinkButton x:Name="hyperlinkButton">
             <HyperlinkButton x:Name="hyperlinkButton1" Content="Help" VerticalAlignment="Top" NavigateUri="https://ynformatics.com/2021/rigol-ds1000-ds1054-viewer-controller/"/>
